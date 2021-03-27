@@ -10,6 +10,7 @@
     "prettify": "prettier --write src/"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.7",
     "@chakra-ui/react": "^1.4.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",

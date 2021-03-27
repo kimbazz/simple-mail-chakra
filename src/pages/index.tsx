@@ -1,16 +1,20 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 
-import SomeText from "../components/SomeText";
-import SomeImage from "../components/SomeImage";
-import CTASection from "../components/CTASection";
+import MainText from "../components/MainText";
+import MainImage from "../components/MainImage";
 
 const Home = () => {
   return (
-    <Box mb={8} w="full">
-      <SomeText />
-      <SomeImage />
-      <CTASection />
-    </Box>
+    <>
+      <Flex>
+        <Box mr={8} pt={1} w="full">
+          <MainImage />
+        </Box>
+        <Box mb={8} w="full">
+          <MainText />
+        </Box>
+      </Flex>
+    </>
   );
 };
 
