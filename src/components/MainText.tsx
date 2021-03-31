@@ -1,10 +1,51 @@
 import { useColorMode } from "@chakra-ui/color-mode";
 import { Box } from "@chakra-ui/layout";
-import { EmailIcon } from "@chakra-ui/icons";
-import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Select,
+  CircularProgress,
+} from "@chakra-ui/react";
+import { useState } from "react";
 
 const MainText = () => {
   const { colorMode } = useColorMode();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [workLocation, setWorkLocation] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    setIsButtonDisabled(true);
+    setIsLoading(true);
+    try {
+      setTimeout(function () {
+        console.log("email => ", email);
+        console.log("name => ", name);
+        console.log("workLocation => ", workLocation);
+
+        // Use Axios to post data
+        // Get the response
+        // Redirect it to thank you page
+
+        setIsLoading(false);
+        setIsButtonDisabled(false);
+        setEmail("");
+        setName("");
+        setWorkLocation("");
+      }, 3000);
+    } catch (error) {
+      setEmail("");
+      setName("");
+      setWorkLocation("");
+      setIsLoading(false);
+      setIsButtonDisabled(false);
+    }
+  };
 
   return (
     <>
@@ -16,35 +57,58 @@ const MainText = () => {
         boxShadow="lg"
         maxWidth={400}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <FormControl isRequired>
-            <FormLabel>Your email address</FormLabel>
+            <FormLabel>Email</FormLabel>
             <Input
-              backgroundColor={"white"}
+              backgroundColor={colorMode === "light" ? "white" : "gray.500"}
               type="email"
               size="md"
               placeholder="yourmail@example.com"
+              value={email}
+              onChange={(event) => setEmail(event.currentTarget.value)}
             />
           </FormControl>
 
           <FormControl marginTop={6} isRequired>
-            <FormLabel>Your name</FormLabel>
+            <FormLabel>Nama</FormLabel>
             <Input
-              backgroundColor={"white"}
+              backgroundColor={colorMode === "light" ? "white" : "gray.500"}
               type="text"
               placeholder="John Doe"
+              value={name}
+              onChange={(event) => setName(event.currentTarget.value)}
             />
+          </FormControl>
+
+          <FormControl marginTop={6} isRequired>
+            <FormLabel>Lokasi kerja</FormLabel>
+            <Select
+              variant="outline"
+              placeholder="-- Silahkan Pilih --"
+              bg={colorMode === "light" ? "white" : "gray.500"}
+              value={workLocation}
+              onChange={(event) => setWorkLocation(event.currentTarget.value)}
+            >
+              <option value="headoffice">Kimia Farma Head Office</option>
+              <option value="warehouse">Kimia Farma Warehouse</option>
+              <option value="laboratorium">Kimia Farma Laboratorium</option>
+            </Select>
           </FormControl>
 
           <Button
             width="full"
             marginTop={4}
-            leftIcon={<EmailIcon />}
             colorScheme="blue"
             variant="solid"
             type="submit"
+            disabled={isButtonDisabled}
           >
-            Send Email
+            {isLoading ? (
+              <CircularProgress isIndeterminate size="24px" color="teal" />
+            ) : (
+              "Send Email"
+            )}
           </Button>
         </form>
       </Box>

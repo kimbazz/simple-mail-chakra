@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Flex as="header" width="full" align="center">
       <AccessibleLink href="/">
-        <Heading as="h1">Simple Mail Sender</Heading>
+        <Heading as="h1">Kimia Farma Berbagi Berkah</Heading>
       </AccessibleLink>
 
       <Box marginLeft="auto">
