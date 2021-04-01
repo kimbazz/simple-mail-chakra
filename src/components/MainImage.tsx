@@ -5,13 +5,10 @@ import React from "react";
 const MainImage = () => {
   return (
     <>
-      <Box marginY={8} maxWidth={400} marginX="auto">
-        <Image src="/envelopes.jpg" width={500} height={335} />
+      <Box marginY={8} maxWidth={400} marginX="auto" borderRadius={8}>
+        <Image src="/kimia-farma-landing-page-logo.png" width={500} height={500} />
       </Box>
       <Text textAlign="center" fontSize="xs">
-        <Link href="http://www.freepik.com" isExternal>
-          Designed by macrovector / Freepik
-        </Link>
       </Text>
     </>
   );

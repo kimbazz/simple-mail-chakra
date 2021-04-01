@@ -9,8 +9,10 @@ import {
   CircularProgress,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const MainText = () => {
+  const router = useRouter();
   const { colorMode } = useColorMode();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -37,6 +39,7 @@ const MainText = () => {
         setEmail("");
         setName("");
         setWorkLocation("");
+        router.push("/thankyou");
       }, 3000);
     } catch (error) {
       setEmail("");
@@ -59,12 +62,12 @@ const MainText = () => {
       >
         <form onSubmit={handleSubmit}>
           <FormControl isRequired>
-            <FormLabel>Email</FormLabel>
+            <FormLabel>Masukkan Email</FormLabel>
             <Input
               backgroundColor={colorMode === "light" ? "white" : "gray.500"}
               type="email"
               size="md"
-              placeholder="yourmail@example.com"
+              placeholder="emailanda@kimiafarma.co.id"
               value={email}
               onChange={(event) => setEmail(event.currentTarget.value)}
             />
@@ -75,7 +78,7 @@ const MainText = () => {
             <Input
               backgroundColor={colorMode === "light" ? "white" : "gray.500"}
               type="text"
-              placeholder="John Doe"
+              placeholder="Syaiful Anwar"
               value={name}
               onChange={(event) => setName(event.currentTarget.value)}
             />
@@ -90,6 +93,12 @@ const MainText = () => {
               value={workLocation}
               onChange={(event) => setWorkLocation(event.currentTarget.value)}
             >
+              <option value="tradedistribution">
+                Kimia Farma Trade Distribution
+              </option>
+              <option value="apotek">Kimia Farma Apotek</option>
+              <option value="plant">Kimia Farma Plant</option>
+              <option value="diagnostika">Kimia Farma Diagnostika</option>
               <option value="headoffice">Kimia Farma Head Office</option>
               <option value="warehouse">Kimia Farma Warehouse</option>
               <option value="laboratorium">Kimia Farma Laboratorium</option>
@@ -99,7 +108,7 @@ const MainText = () => {
           <Button
             width="full"
             marginTop={4}
-            colorScheme="blue"
+            colorScheme="green"
             variant="solid"
             type="submit"
             disabled={isButtonDisabled}
