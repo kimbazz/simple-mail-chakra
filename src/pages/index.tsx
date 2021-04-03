@@ -1,17 +1,19 @@
 import { Box, Flex } from "@chakra-ui/layout";
-
-import MainText from "../components/MainText";
+import Header from "../components/layout/Header";
+import MainForm from "../components/MainForm";
 import MainImage from "../components/MainImage";
 
 const Home = () => {
   return (
     <>
-      <Flex>
+      <Header />
+      <Flex flexDirection={{ base: "column", md: "row", lg: "row" }}>
         <Box mr={8} pt={1} w="full">
           <MainImage />
         </Box>
+
         <Box mb={8} w="full">
-          <MainText />
+          <MainForm />
         </Box>
       </Flex>
     </>
