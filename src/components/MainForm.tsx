@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const MainText = () => {
+const MainForm = () => {
   const router = useRouter();
   const { colorMode } = useColorMode();
   const [email, setEmail] = useState("");
@@ -26,10 +26,6 @@ const MainText = () => {
     setIsLoading(true);
     try {
       setTimeout(function () {
-        console.log("email => ", email);
-        console.log("name => ", name);
-        console.log("workLocation => ", workLocation);
-
         // Use Axios to post data
         // Get the response
         // Redirect it to thank you page
@@ -125,4 +121,4 @@ const MainText = () => {
   );
 };
 
-export default MainText;
+export default MainForm;
