@@ -32,7 +32,7 @@ const MainForm = () => {
       // Get the response
       // Redirect it to thank you page
       const result = await axiosInstance.post(
-        "http://147.139.196.112:3030/v1/mail",
+        "https://polaroisme.xyz/v1/mail",
         {
           email,
           name,
