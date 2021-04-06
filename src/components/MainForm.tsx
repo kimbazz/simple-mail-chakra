@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { Box } from "@chakra-ui/layout";
 import {
@@ -10,6 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+
+const axiosInstance = axios.create();
 
 const MainForm = () => {
   const router = useRouter();
@@ -25,24 +28,37 @@ const MainForm = () => {
     setIsButtonDisabled(true);
     setIsLoading(true);
     try {
-      setTimeout(function () {
-        // Use Axios to post data
-        // Get the response
-        // Redirect it to thank you page
-
+      // Use Axios to post data
+      // Get the response
+      // Redirect it to thank you page
+      const result = await axiosInstance.post(
+        "http://147.139.196.112:3030/v1/mail",
+        {
+          email,
+          name,
+          workLocation,
+        }
+      );
+      if (result.status === 200) {
         setIsLoading(false);
         setIsButtonDisabled(false);
         setEmail("");
         setName("");
         setWorkLocation("");
         router.push("/thankyou");
-      }, 3000);
+      }
     } catch (error) {
       setEmail("");
       setName("");
       setWorkLocation("");
       setIsLoading(false);
       setIsButtonDisabled(false);
+    } finally {
+      setIsLoading(false);
+      setIsButtonDisabled(false);
+      setEmail("");
+      setName("");
+      setWorkLocation("");
     }
   };
 
